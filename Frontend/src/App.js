@@ -1,4 +1,3 @@
-//imports 
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import linkedin from './image/likedin.png';
@@ -9,7 +8,6 @@ import email from './image/email.png';
 import facebook from './image/Facebook.png';
 import instagram from './image/instagram.png';
 
-// defining css 
 const mainContentStyle = {
   backgroundColor: '#0C0C0C',
   color: '#aaa',
@@ -19,7 +17,7 @@ const mainContentStyle = {
   overflow: 'hidden',
   position: 'relative',
 };
-// when to go to phone view 
+
 const Portfolio = () => {
   const [isMobileView, setIsMobileView] = useState(false);
 
@@ -37,26 +35,26 @@ const Portfolio = () => {
       window.removeEventListener('resize', checkIsMobile);
     };
   }, []);
-//hide the scroll bar 
+
   useEffect(() => {
-    const handleScroll = () => {
-      document.body.style.overflow = 'hidden';
+    const handleResize = () => {
+      const minHeight = window.innerHeight;
+      document.documentElement.style.setProperty('--min-height', `${minHeight}px`);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    handleResize();
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.body.style.overflow = 'visible';
-    };
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const buttonStyle = {
-    fontSize: isMobileView? '13px':'20px',
+    fontSize: isMobileView ? '13px' : '20px',
     border: '2px solid #C4DCFF',
     backgroundColor: 'transparent',
     color: '#aaa',
-    padding: isMobileView? '8px 1px' :'8px 15px',
+    padding: isMobileView ? '8px 1px' : '8px 15px',
     borderRadius: '10%',
     cursor: 'pointer',
     maxWidth: '180px',
@@ -75,30 +73,18 @@ const Portfolio = () => {
     zIndex: 1,
   };
 
-  const footerStylePC = {
+  const footerStyle = {
     backgroundColor: '#0C0C0C',
     color: '#aaa',
     textAlign: 'center',
     padding: '1rem',
     position: 'fixed',
-    bottom: '0',
-    width: '100%',
-    right: '-10px',
+    bottom: isMobileView ? '10px' : '0',
+    width: isMobileView ? '105%' : '100%',
     display: 'flex',
-    justifyContent: 'flex-end',
-  };
-
-  const footerStyleMobile = {
-    backgroundColor: '#0C0C0C',
-    color: '#aaa',
-    textAlign: 'center',
-    padding: '1rem',
-    position: 'fixed',
-    bottom: '10px',
-    width: '105%',
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '30px',
+    justifyContent: isMobileView ? 'center' : 'flex-end',
+    gap: isMobileView ? '30px' : 'unset',
+    right: isMobileView ? 'unset' : '-10px',
   };
 
   const logoStyle = {
@@ -106,15 +92,31 @@ const Portfolio = () => {
     right: '5%',
     cursor: 'pointer',
     transition: 'filter 0.3s',
-    width:isMobileView? '20px': '30px',
-    height: isMobileView? '20px':'30px',
+    width: isMobileView ? '20px' : '30px',
+    height: isMobileView ? '20px' : '30px',
     borderRadius: '60%',
-    
   };
 
   const grayscaleLogoStyle = {
     filter: 'grayscale(100%)',
     transition: 'filter 0.3s',
+  };
+
+  const linksContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '0rem',
+    gap: '40%',
+  };
+
+  const linkStyle = {
+    fontSize: isMobileView?'60%':'120%',
+    marginRight: '-4%',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    color: '#aaa',
+
+    borderBottom: '2px solid #aaa',
   };
 
   return (
@@ -124,58 +126,35 @@ const Portfolio = () => {
           path="/"
           element={
             <>
-              <div style={mainContentStyle} id="about-me">
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                  <div style={{ width: '300px', maxWidth: '100%', marginBottom: '20px', textAlign: 'left' }}>
+              <div style={{ position: 'relative' }}>
+        <div style={mainContentStyle}>
+          <div style={linksContainerStyle}>
+            <Link to="/about" style={{ ...linkStyle }}>About</Link>
+            <Link to="/" style={{ ...linkStyle }}>Home</Link>
+            <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
+          </div>
 
-                  </div>
-
-                  <style>
-    {`
-      ::selection {
-        color: #00e6e6;
-      }
-    `}
-  </style>
-
-  <Link 
-  to="/about" 
-  style={{ 
-    fontSize: isMobileView ? '2rem' : '120%', 
-    position: 'fixed', 
-    top: '5%', 
-    left: isMobileView? '95%':'90%', 
-    cursor: 'pointer', 
-    textDecoration: 'none', 
-    color: '#aaa' 
-  }}
->
-  {isMobileView ? "ℹ️" : <u>About</u>} {/* Changed the text to "About Me" on PC view */}
-</Link>
-
-                  <div style={{
-                    textAlign: 'left',
-                    top: '40%',
-                    position: 'fixed',
-                    width: isMobileView ? '90%' : '50%',
-                    transform: 'translateY(-50%)',
-                    marginLeft: '14%',
-                  }}>
-
+                  <div
+                    style={{
+                      textAlign: 'left',
+                      top: '40%',
+                      position: 'fixed',
+                      width: isMobileView ? '90%' : '50%',
+                      transform: 'translateY(-50%)',
+                      marginLeft: '27%',
+                    }}
+                  >
                     <h2>
-                      <span style={{ fontSize: isMobileView ? '20px' : '30px', fontWeight: 'normal', top: isMobileView ? '10%' : 'unset' }}>
-                        Hi, my name is Mohammed 👋<br />
-                      </span>
-                      <span style={{ fontSize: isMobileView ? '25px' : '40px', fontWeight: 'bold', top: isMobileView ? '10%' : 'unset' }}>
-                        I have been coding and analyzing data for 5+ years🤖
-                      </span>
+                      <span style={{ fontSize: isMobileView ? '20px' : '30px', fontWeight: 'normal', top: isMobileView ? '10%' : 'unset' }}>Hi, my name is Mohammed 👋</span>
+                      <br />
+                      <span style={{ fontSize: isMobileView ? '25px' : '40px', fontWeight: 'bold', top: isMobileView ? '10%' : 'unset' }}>I have been coding and analyzing data for 5+ years🤖</span>
                     </h2>
                   </div>
 
                   <div style={additionalButtonsContainerStyle}>
                     {isMobileView ? null : (
                       <Link
-                        to="/about" // Change the path accordingly
+                        to="/about"
                         style={Object.assign({}, buttonStyle, {
                           minWidth: '150px',
                           textDecoration: 'none',
@@ -193,7 +172,7 @@ const Portfolio = () => {
                       </Link>
                     )}
                     <Link
-                      to="/contact" // Change the path accordingly
+                      to="/contact"
                       style={Object.assign({}, buttonStyle, {
                         minWidth: '150px',
                         textDecoration: 'none',
@@ -233,25 +212,9 @@ const Portfolio = () => {
                 </div>
               </div>
 
-              <Link 
-  to="/contact" 
-  style={{ 
-    fontSize: isMobileView ? '2rem' : '120%', 
-    position: 'fixed', 
-    top: '5%', 
-    left: isMobileView? '5%':'5%', 
-    cursor: 'pointer', 
-    textDecoration: 'none', 
-    color: '#aaa' 
-  }}
->
-  {isMobileView ? "📨" : <u>Contact</u>} {/* Changed the text to "Contact Me" on PC view */}
-</Link>
-
-<Link to="/" style={{ fontSize: isMobileView ? '2rem' : '120%', position: 'fixed', top: '5%', left: isMobileView? '47%':'49%', cursor: 'pointer', textDecoration: 'none',color:'#aaa' }}>
-  {isMobileView ? "🏚️" : <u>Home</u>} {/* Changed the text to "Contact Me" on PC view */}
-</Link>
-              <div style={isMobileView ? footerStyleMobile : footerStylePC}>
+             
+                
+              <div style={footerStyle}>
                 <a href="https://www.linkedin.com/in/mohammed-bakhshi/" target="_blank" rel="noopener noreferrer">
                   <img
                     src={linkedin}
@@ -323,7 +286,23 @@ const Portfolio = () => {
                 </a>
               </div>
 
-              <div style={isMobileView ? null : { display: 'flex', justifyContent: 'center', alignItems: 'center', color: '#aaa', position: 'fixed', bottom: '50px', width: '100%', fontSize: '80%', gap: '10%' }}>
+              <div
+                style={
+                  isMobileView
+                    ? null
+                    : {
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        color: '#aaa',
+                        position: 'fixed',
+                        bottom: '50px',
+                        width: '100%',
+                        fontSize: '80%',
+                        gap: '10%',
+                      }
+                }
+              >
                 <p style={{ marginRight: '10px' }}>Built using React.js</p>
                 <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>
                 <p style={{ marginRight: '10px' }}>Powered by Node.js</p>
@@ -340,3 +319,4 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
+                                            

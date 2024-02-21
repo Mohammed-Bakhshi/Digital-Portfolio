@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import anime from 'animejs/lib/anime.es.js'; // Import anime.js
+import anime from 'animejs/lib/anime.es.js';
 import email from './image/email.png';
 import linkedin from './image/likedin.png';
 import github from './image/github.png';
@@ -12,8 +12,7 @@ const mainContentStyle = {
   color: '#aaa',
   textAlign: 'center',
   padding: '2rem',
-  height: '100vh',
-  minWidth: '600px',
+  minHeight: '100vh',
   overflowY: 'scroll',
   position: 'relative',
   scrollbarWidth: 'none',
@@ -21,7 +20,6 @@ const mainContentStyle = {
   '&::-webkit-scrollbar': {
     width: '0px',
   },
-  
 };
 
 const grayscaleLogoStyle = {
@@ -52,19 +50,19 @@ const Portfolio = () => {
     const textWrapper = textWrapperRef.current;
     if (textWrapper) {
       textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-      anime.timeline({loop: true})
+      anime.timeline({ loop: true })
         .add({
           targets: '.ml12 .letter',
-          translateX: [40,0],
+          translateX: [40, 0],
           translateZ: 0,
-          opacity: [0,1],
+          opacity: [0, 1],
           easing: "easeOutExpo",
           duration: 1200,
           delay: (el, i) => 500 + 30 * i
         }).add({
           targets: '.ml12 .letter',
-          translateX: [0,-30],
-          opacity: [1,0],
+          translateX: [0, -30],
+          opacity: [1, 0],
           easing: "easeInExpo",
           duration: 1100,
           delay: (el, i) => 100 + 30 * i
@@ -88,6 +86,23 @@ const Portfolio = () => {
     whiteSpace: 'nowrap',
   };
 
+  const linksContainerStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '0rem',
+    gap: '40%',
+  };
+
+  const linkStyle = {
+    fontSize: isMobileView?'60%':'120%',
+    marginRight: '-4%',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    color: '#aaa',
+
+    borderBottom: '2px solid #aaa',
+  };
+
   const logoStyle = {
     marginBottom: isMobileView ? '5px' : '90px',
     cursor: 'pointer',
@@ -102,45 +117,39 @@ const Portfolio = () => {
     <>
       <style>
         {`
+          ::selection {
+            color: #00e6e6;
+          }
+          .ml12 {
+            font-weight: 200;
+            font-size: ${isMobileView ? '85%' : '1.7em'};
+            text-transform: uppercase;
+            letter-spacing:  ${isMobileView ? '0.4rem':'0.5em'};
+          }
 
-::selection {
-  color: #00e6e6;
-}
-        .ml12 {
-          font-weight: 200;
-          font-size: ${isMobileView ? '85%' : '1.7em'};
-          text-transform: uppercase;
-          letter-spacing:  ${isMobileView ? '0.4rem':'0.5em'};
-        }
-
-        .ml12 .letter {
-          display: inline-block;
-          line-height:  ${isMobileView ? '1rem':'2em'};
-        }
-      `}
+          .ml12 .letter {
+            display: inline-block;
+            line-height:  ${isMobileView ? '1rem':'2em'};
+          }
+        `}
       </style>
 
-      <div style={mainContentStyle} id="about-me">
-        <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginBottom: '20px' }}>
-          <Link to="/about" style={{ fontSize: isMobileView ? '2rem' : '120%', position: 'fixed', top: '5%', left: isMobileView ? '95%' : '90%', cursor: 'pointer', textDecoration: 'none', color: '#aaa' }}>
-            {isMobileView ? "ℹ️" : <u>About</u>}
-          </Link>
-          <Link to="/contact" style={{ fontSize: isMobileView ? '2rem' : '120%', position: 'fixed', top: '5%', left: isMobileView ? '5%' : '5%', cursor: 'pointer', textDecoration: 'none', color: '#aaa' }}>
-            {isMobileView ? "📨" : <u>Contact</u>}
-          </Link>
-          <Link to="/" style={{ fontSize: isMobileView ? '2rem' : '120%', position: 'fixed', top: '5%', left: isMobileView ? '47%' : '49%', cursor: 'pointer', textDecoration: 'none', color: '#aaa' }}>
-            {isMobileView ? "🏚️" : <u>Home</u>}
-          </Link>
+      <div style={{ position: 'relative' }}>
+        <div style={mainContentStyle}>
+          <div style={linksContainerStyle}>
+            <Link to="/about" style={{ ...linkStyle }}>About</Link>
+            <Link to="/" style={{ ...linkStyle }}>Home</Link>
+            <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
+          </div>
+          </div>
+
+        <div ref={textWrapperRef} className="ml12" style={{ position: 'fixed', top: isMobileView ? '50%' : '50%', left: isMobileView ? '25%' : '50%', maxWidth: isMobileView ? '60%' : '40%', textAlign: 'center' }}>
+          <h2 className="ml12">
+            Available to work <br />
+            <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
+          </h2>
         </div>
 
-        <div ref={textWrapperRef} className="ml12" style={{ position: 'fixed', top: isMobileView?'50%':'50%', left:isMobileView? '25%': '50%', maxWidth:isMobileView?'60%':'40%', textAlign: 'center' }}>
-  <h2 className="ml12">
-    Available to work <br />
-    <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
-  </h2>
-</div>
-
-        {/* Social Media Logos */}
         <div style={{ display: 'flex', flexDirection: isMobileView ? 'row' : 'column', position: 'fixed', top: isMobileView ? '75%' : '35%', left: isMobileView ? '12%' : '15%' }}>
           <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
             <a href="https://www.linkedin.com/in/mohammed-bakhshi/" target="_blank" rel="noopener noreferrer">

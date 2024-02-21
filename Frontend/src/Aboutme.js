@@ -42,7 +42,7 @@ const MainContent = () => {
     color: '#aaa',
     textAlign: 'center',
     padding: '2rem',
-    overflowY: 'scroll',
+    overflowY: 'auto',
     height: '100vh',
     position: 'relative',
     scrollbarWidth: 'none',
