@@ -84,12 +84,11 @@ const Portfolio = () => {
     display: 'flex',
     justifyContent: isMobileView ? 'center' : 'flex-end',
     gap: isMobileView ? '30px' : 'unset',
-    right: isMobileView ? 'unset' : '-10px',
+    right: isMobileView ? '-40px' : '-10px',
   };
 
   const logoStyle = {
-    marginRight: '10px',
-    right: '5%',
+    marginRight: '0px',
     cursor: 'pointer',
     transition: 'filter 0.3s',
     width: isMobileView ? '20px' : '30px',
@@ -106,12 +105,12 @@ const Portfolio = () => {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '0rem',
-    gap: '40%',
+    gap:isMobileView? '35%': '40%',
   };
 
   const linkStyle = {
-    fontSize: isMobileView?'60%':'120%',
-    marginRight: '-4%',
+    fontSize: isMobileView?'80%':'120%',
+    marginRight:isMobileView?'-20px': '-4%',
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#aaa',
@@ -139,9 +138,9 @@ const Portfolio = () => {
                       textAlign: 'left',
                       top: '40%',
                       position: 'fixed',
-                      width: isMobileView ? '90%' : '50%',
+                      width: isMobileView ? '75%' : '50%',
                       transform: 'translateY(-50%)',
-                      marginLeft: '27%',
+                      marginLeft: isMobileView?'10%':'27%',
                     }}
                   >
                     <h2>
@@ -171,24 +170,6 @@ const Portfolio = () => {
                         About Me
                       </Link>
                     )}
-                    <Link
-                      to="/contact"
-                      style={Object.assign({}, buttonStyle, {
-                        minWidth: '150px',
-                        textDecoration: 'none',
-                      })}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#001f33';
-                        e.target.style.color = '#bfbfbf';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = 'transparent';
-                        e.target.style.color = '#aaa';
-                      }}
-                    >
-                      Contact Me
-                    </Link>
-                    {!isMobileView && (
                       <a
                         href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
                         download="Mohammed_Bakhshi_CV.pdf"
@@ -207,7 +188,28 @@ const Portfolio = () => {
                       >
                         View my CV
                       </a>
-                    )}
+                    
+                    
+                      {!isMobileView && (
+  <Link
+    to="/contact"
+    style={Object.assign({}, buttonStyle, {
+      minWidth: '150px',
+      textDecoration: 'none',
+    })}
+    onMouseEnter={(e) => {
+      e.target.style.backgroundColor = '#001f33';
+      e.target.style.color = '#bfbfbf';
+    }}
+    onMouseLeave={(e) => {
+      e.target.style.backgroundColor = 'transparent';
+      e.target.style.color = '#aaa';
+    }}
+  >
+    Contact Me
+  </Link>
+)}
+                    
                   </div>
                 </div>
               </div>
@@ -287,26 +289,26 @@ const Portfolio = () => {
               </div>
 
               <div
-                style={
-                  isMobileView
-                    ? null
-                    : {
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        color: '#aaa',
-                        position: 'fixed',
-                        bottom: '50px',
-                        width: '100%',
-                        fontSize: '80%',
-                        gap: '10%',
-                      }
-                }
-              >
-                <p style={{ marginRight: '10px' }}>Built using React.js</p>
-                <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>
-                <p style={{ marginRight: '10px' }}>Powered by Node.js</p>
-              </div>
+  style={
+    isMobileView
+      ? null
+      : {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          color: '#aaa',
+          position: 'fixed',
+          bottom: '50px',
+          width: '100%',
+          fontSize: '80%',
+          gap: '10%',
+        }
+  }
+>
+  {!isMobileView && <p style={{ marginRight: '10px' }}>Built using React.js</p>}
+  {!isMobileView && <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>}
+  {!isMobileView && <p style={{ marginRight: '10px' }}>Powered by Node.js</p>}
+</div>
             </>
           }
         />

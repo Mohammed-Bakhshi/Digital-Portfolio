@@ -90,12 +90,12 @@ const Portfolio = () => {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '0rem',
-    gap: '40%',
+    gap:isMobileView? '35%': '40%',
   };
 
   const linkStyle = {
-    fontSize: isMobileView?'60%':'120%',
-    marginRight: '-4%',
+    fontSize: isMobileView?'80%':'120%',
+    marginRight:isMobileView?'-20px': '-4%',
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#aaa',
@@ -130,6 +130,7 @@ const Portfolio = () => {
           .ml12 .letter {
             display: inline-block;
             line-height:  ${isMobileView ? '1rem':'2em'};
+            color: #aaa;
           }
         `}
       </style>
@@ -143,14 +144,14 @@ const Portfolio = () => {
           </div>
           </div>
 
-        <div ref={textWrapperRef} className="ml12" style={{ position: 'fixed', top: isMobileView ? '50%' : '50%', left: isMobileView ? '25%' : '50%', maxWidth: isMobileView ? '60%' : '40%', textAlign: 'center' }}>
+        <div ref={textWrapperRef} className="ml12" style={{ position: 'fixed', top: isMobileView ? '50%' : '50%', left: isMobileView ? '15%' : '50%', maxWidth: isMobileView ? '75%' : '40%', textAlign: 'center' }}>
           <h2 className="ml12">
             Available to work <br />
             <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
           </h2>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: isMobileView ? 'row' : 'column', position: 'fixed', top: isMobileView ? '75%' : '35%', left: isMobileView ? '12%' : '15%' }}>
+        <div style={{ display: 'flex', flexDirection: isMobileView ? 'row' : 'column', position: 'fixed', top: isMobileView ? '75%' : '25%', left: isMobileView ? '12%' : '15%' }}>
           <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
             <a href="https://www.linkedin.com/in/mohammed-bakhshi/" target="_blank" rel="noopener noreferrer">
               <img

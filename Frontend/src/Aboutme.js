@@ -60,7 +60,7 @@ const MainContent = () => {
   };
 
   const imageStyle = {
-    width: isMobileView ? '40%' : '15%',
+    width: isMobileView ? '50%' : '15%',
     height: '15%',
     borderRadius: '5%',
     maxWidth: '100%', // Ensure image does not exceed its container
@@ -86,12 +86,12 @@ const MainContent = () => {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '0rem',
-    gap: '40%',
+    gap:isMobileView? '35%': '40%',
   };
 
   const linkStyle = {
-    fontSize: isMobileView?'60%':'120%',
-    marginRight: '-4%',
+    fontSize: isMobileView?'80%':'120%',
+    marginRight:isMobileView?'-20px': '-4%',
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#aaa',
@@ -104,14 +104,15 @@ const MainContent = () => {
     justifyContent: 'center',
     marginTop: '2rem',
     marginBottom: '2rem',
-    gap: isMobileView ? '10%' : '10%',
+    gap: isMobileView ? '8%' : '10%',
   };
 
   const SnalllogosContainerStyle = {
     display: 'flex',
     maxWidth: '100%',
     marginBottom: '3rem',// Adjust the maximum width as needed
-    justifyContent: 'flex-end', // Align items to the right
+    justifyContent: isMobileView? 'center':'right', // Align items to the right
+    gap: isMobileView? '5%':'0'
   };
 
   const SmallLogoStyle = {
@@ -123,7 +124,7 @@ const MainContent = () => {
   };
 
   const logoStyle = {
-    width: isMobileView ? '30px' : '50px',
+    width: isMobileView ? '25px' : '50px',
     height: 'auto',
     filter: 'grayscale(100%)',
     transition: 'filter 0.3s',
