@@ -9,7 +9,7 @@ import facebook from './image/Facebook.png';
 import instagram from './image/instagram.png';
 
 const mainContentStyle = {
-  backgroundColor: '#0C0C0C',
+  backgroundColor: '#171717',
   color: '#aaa',
   textAlign: 'center',
   padding: '2rem',
@@ -74,7 +74,7 @@ const Portfolio = () => {
   };
 
   const footerStyle = {
-    backgroundColor: '#0C0C0C',
+    backgroundColor: '#171717',
     color: '#aaa',
     textAlign: 'center',
     padding: '1rem',

@@ -38,7 +38,7 @@ const MainContent = () => {
   }, []);
 
   const mainContentStyle = {
-    backgroundColor: '#0C0C0C',
+    backgroundColor: '#171717',
     color: '#aaa',
     textAlign: 'center',
     padding: '2rem',
