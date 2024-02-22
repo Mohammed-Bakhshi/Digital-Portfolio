@@ -80,8 +80,8 @@ const Portfolio = () => {
       message: event.target.elements.message.value
     };
 
-    // Send form data to backend endpoint
-    fetch('http://35.178.197.145', {
+    // Send form data to backend endpoint (replace 'your-backend-endpoint' with your actual endpoint)
+    fetch('your-backend-endpoint', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -149,13 +149,14 @@ const Portfolio = () => {
   };
 
   const logoStyle = {
-    marginBottom: isMobileView ? '5px' : '90px',
+    marginBottom: isMobileView ? '40px' : '90px',
     cursor: 'pointer',
     transition: 'filter 0.3s',
     width: isMobileView ? '30px' : '40px',
     height: isMobileView ? '30px' : '40px',
     margin: isMobileView ? '25px' : '20px',
     borderRadius: '30%',
+    
   };
 
   const contactFormStyle = {
@@ -163,8 +164,9 @@ const Portfolio = () => {
     color: '#aaa',
     padding: '2rem',
     borderRadius: '10px',
-    width: '300px',
+    width:isMobileView?'300px': '500px',
     textAlign: 'left',
+    
   };
 
   const textAreaStyle = {
@@ -178,10 +180,17 @@ const Portfolio = () => {
 
   const contactFormContainerStyle = {
     display: 'flex',
-    marginTop: '25%',
-    marginRight: '20%',
-    gap: '10%',
+    marginTop: isMobileView?'40%':'15%',
     justifyContent: 'center',
+    gap:'25%',
+    flexDirection: isMobileView ? 'column' : 'row-reverse', // Change flex direction based on mobile view
+  };
+
+  const logoContainerStyle = {
+    display: 'flex',
+    flexDirection: isMobileView ? 'row' : 'column', // Change flex direction based on mobile view
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 
   return (
@@ -193,9 +202,9 @@ const Portfolio = () => {
           }
           .ml12 {
             font-weight: 200;
-            font-size: ${isMobileView ? '85%' : '1.5em'};
+            font-size: ${isMobileView ? '80%' : '1.5em'};
             text-transform: uppercase;
-            letter-spacing: ${isMobileView ? '0.4rem' : '0.5em'};
+            letter-spacing: ${isMobileView ? '0.2rem' : '0.5em'};
           }
 
           .ml12 .letter {
@@ -213,7 +222,7 @@ const Portfolio = () => {
             <Link to="/" style={{ ...linkStyle }}>Home</Link>
             <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
           </div>
-          <div ref={textWrapperRef} className="ml12" style={{ position: 'absolute', top: isMobileView ? '50%' : '25%', left: isMobileView ? '15%' : '20%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
+          <div ref={textWrapperRef} className="ml12" style={{ position: 'absolute', top: isMobileView ? '20%' : '17%', left: isMobileView ? '15%' : '25%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
             <h2 className="ml12">
               Available to work <br />
               <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
@@ -224,10 +233,10 @@ const Portfolio = () => {
               <h2>Contact Me</h2>
               <input type="text" name="name" placeholder="Name" style={textAreaStyle} required></input>
               <input type="email" name="email" placeholder="Email" style={textAreaStyle} required></input>
-              <textarea name="message" placeholder="Message" style={textAreaStyle} required></textarea><br></br>
+              <textarea name="message" placeholder="Message" style={textAreaStyle} required></textarea><br></br><br></br>
               <button style={buttonStyle} type="submit">Send</button>
             </form>
-            <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '5%' }}>
+            <div style={logoContainerStyle}>
               {/* Tooltip code */}
               <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
                 <a href="https://www.linkedin.com/in/mohammed-bakhshi/" target="_blank" rel="noopener noreferrer">
