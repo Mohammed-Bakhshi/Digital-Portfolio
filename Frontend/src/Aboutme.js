@@ -130,6 +130,8 @@ const MainContent = () => {
     transition: 'filter 0.3s',
   };
 
+  
+
   const handleLogoHover = (event) => {
     event.target.style.filter = 'none';
   };
