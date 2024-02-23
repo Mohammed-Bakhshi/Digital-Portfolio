@@ -79,12 +79,12 @@ const Portfolio = () => {
     textAlign: 'center',
     padding: '1rem',
     position: 'fixed',
-    bottom: isMobileView ? '10px' : '0',
+    bottom: isMobileView ? '10px' : '-15px',
     width: isMobileView ? '105%' : '100%',
     display: 'flex',
     justifyContent: isMobileView ? 'center' : 'flex-end',
-    gap: isMobileView ? '30px' : 'unset',
-    right: isMobileView ? '-40px' : '-10px',
+    gap: isMobileView ? '30px' : '10px',
+    right: isMobileView ? '-40px' : '10px',
   };
 
   const logoStyle = {

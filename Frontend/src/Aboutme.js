@@ -223,10 +223,10 @@ const MainContent = () => {
           </div>
           <br />
           <h3 style={{ textAlign: 'center', marginTop: '2rem', color: '#aaa', fontWeight: 'normal' }}>
-            Projects in my spare time
+            How I made this Portfolio
           </h3>
           <ul style={{ listStyleType: 'disc', textAlign: 'left', marginLeft:isMobileView? '-5%':'40%', marginRight: 'auto', maxWidth: '600px' }}>
-            <li> Discover Billboard Hot 100 trends with data </li>
+            <li> I made a react app </li>
             <li> Unlock insights with interactive finance tool </li>
             <li> Explore Charizard stats in web project.</li>
             <li>Explore my fully interactive digital portfolio </li>
