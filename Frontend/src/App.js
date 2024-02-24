@@ -110,13 +110,15 @@ const Portfolio = () => {
 
   const linkStyle = {
     fontSize: isMobileView?'80%':'120%',
-    marginRight:isMobileView?'-20px': '-4%',
+    marginRight:isMobileView?'-20px': '-2%',
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#aaa',
 
     borderBottom: '2px solid #aaa',
   };
+
+  
 
   return (
     <Router>
@@ -125,6 +127,15 @@ const Portfolio = () => {
           path="/"
           element={
             <>
+
+<style>
+        {`
+          ::selection {
+            color: #00e6e6;
+          }
+        `}
+      </style>
+            
               <div style={{ position: 'relative' }}>
         <div style={mainContentStyle}>
           <div style={linksContainerStyle}>
@@ -149,6 +160,8 @@ const Portfolio = () => {
                       <span style={{ fontSize: isMobileView ? '25px' : '40px', fontWeight: 'bold', top: isMobileView ? '10%' : 'unset' }}>I have been coding and analyzing data for 5+ years🤖</span>
                     </h2>
                   </div>
+
+                  
 
                   <div style={additionalButtonsContainerStyle}>
                     {isMobileView ? null : (
