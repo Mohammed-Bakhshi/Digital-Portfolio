@@ -42,19 +42,19 @@ const Portfolio = () => {
         textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
         anime.timeline({ loop: true })
           .add({
-            targets: '.ml12 .letter',
-            translateX: [40, 0],
+            targets: '.ml13 .letter',
+            translateY: [100, 0],
             translateZ: 0,
             opacity: [0, 1],
             easing: "easeOutExpo",
-            duration: 1200,
-            delay: (el, i) => 500 + 30 * i
+            duration: 1400,
+            delay: (el, i) => 300 + 30 * i
           }).add({
-            targets: '.ml12 .letter',
-            translateX: [0, -30],
+            targets: '.ml13 .letter',
+            translateY: [0, -100],
             opacity: [1, 0],
             easing: "easeInExpo",
-            duration: 1100,
+            duration: 1200,
             delay: (el, i) => 100 + 30 * i
           });
       }
@@ -116,6 +116,8 @@ const Portfolio = () => {
     flexDirection: isMobileView ? 'row' : 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    marginLeft: '-80%',
+    marginTop: '5%'
   };
 
   return (
@@ -125,16 +127,15 @@ const Portfolio = () => {
           ::selection {
             color: #00e6e6;
           }
-          .ml12 {
-            font-weight: 200;
+          .ml13 {
+            font-weight: 400;
             font-size: ${isMobileView ? '80%' : '1.5em'};
             text-transform: uppercase;
-            letter-spacing: ${isMobileView ? '0.2rem' : '0.5em'};
+            
           }
 
-          .ml12 .letter {
+          .ml13 .letter {
             display: inline-block;
-            line-height: ${isMobileView ? '1rem' : '2em'};
             color: #aaa;
           }
         `}
@@ -147,8 +148,8 @@ const Portfolio = () => {
             <Link to="/" style={{ ...linkStyle }}>Home</Link>
             <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
           </div>
-          <div ref={textWrapperRef} className="ml12" style={{ position: 'relative', marginTop: '8%', marginLeft: '10%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
-            <h2 className="ml12">
+          <div ref={textWrapperRef} className="ml13" style={{ position: 'relative', marginTop: '8%', marginLeft: '10%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
+            <h2 className="ml13">
               Available to work <br />
               <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
             </h2>

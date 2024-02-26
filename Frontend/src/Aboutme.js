@@ -8,7 +8,7 @@ import theresidentsclub from './image/theresidentsclub.ico';
 import Javascript from './image/javascript.png';
 import react from './image/React.png';
 import Python from './image/python.png';
-import MYSQL from './image/mysql-logo.png';
+import SQL from './image/sql-logo.png';
 import kotlin from './image/kotlin.png';
 import selenium from './image/Selenium.png';
 import linkedin from './image/likedin.png';
@@ -23,7 +23,7 @@ const MainContent = () => {
     javascript: false,
     react: false,
     python: false,
-    mysql: false,
+    sql: false,
     kotlin: false,
     selenium: false,
   });
@@ -112,6 +112,7 @@ const MainContent = () => {
     marginTop: '2rem',
     marginBottom: '2rem',
     gap: isMobileView ? '8%' : '10%',
+    position:'relative',
   };
 
   const SmallLogoStyle = {
@@ -179,13 +180,13 @@ const MainContent = () => {
               style={imageStyle}
             />
             <p style={pcParagraphStyle}>
-              Hey, I'm Mohammed. I've been working as a data analyst and web developer for over 5 years.
+              Hey, my name is  Mohammed. I've been working as a data analyst and web developer for over 5 years.
               Along the way, I've picked up a bunch of programming languages and tools that help me get the job done. When I'm not at work, you can find me doing LeetCode, watching anime, or playing games.
             </p>
           </div>
           {isMobileView && (
             <p style={{ ...pcParagraphStyle, display: 'block', textAlign: 'left', marginTop: '2rem', width: '90%', fontSize: '18px' }}>
-              Hey, I'm Mohammed. I've been working as a data analyst and web developer for over 5 years.
+              Hey, my name is  Mohammed. I've been working as a data analyst and web developer for over 5 years.
               Along the way, I've picked up a bunch of programming languages and tools that help me get the job done. When I'm not at work, you can find me doing LeetCode, watching anime, or playing games.
             </p>
           )}
@@ -197,7 +198,7 @@ const MainContent = () => {
               { id: 'javascript', src: Javascript, alt: 'Javascript', name: 'Javascript' },
               { id: 'react', src: react, alt: 'React', name: 'React.js' },
               { id: 'python', src: Python, alt: 'Python', name: 'Python' },
-              { id: 'mysql', src: MYSQL, alt: 'MYSQL', name: 'MYSQL' },
+              { id: 'SQL', src: SQL, alt: 'SQL', name: 'SQL' },
               { id: 'kotlin', src: kotlin, alt: 'Kotlin', name: 'Kotlin' },
               { id: 'selenium', src: selenium, alt: 'Selenium', name: 'Selenium' },
             ].map(({ id, src, alt, name }) => (
@@ -220,19 +221,20 @@ const MainContent = () => {
               How I made this Portfolio
             </h3>
 
-            <div style={{ textAlign: 'center', fontSize: isMobileView ? '90%' : 'unset', marginTop: '1rem', marginLeft: isMobileView ? '-5%' : 'auto', marginRight: 'auto', maxWidth: '600px' }}>
-              <p>
-                <strong>Getting started:</strong> I set up a local development environment to work on the website efficiently.
-              </p>
-              <p>
-                <strong>Frontend Development:</strong> Using JavaScript, HTML, CSS, and React.js, I designed and developed the frontend of the website to ensure a dynamic and responsive user experience.
-              </p>
-              <p>
-                <strong>Deployment to AWS EC2:</strong> I deployed the website to an AWS EC2 Ubuntu Linux server to make it accessible over the internet.
-              </p>
-              <p>
-                <strong>Server Configuration:</strong> I configured Nginx and Node.js on the server to handle web traffic and execute server-side code efficiently.
-              </p>
+            <div style={{ textAlign: 'center', fontSize: isMobileView ? '80%' : 'unset', marginTop: '1rem', marginLeft: isMobileView ? '10%' : 'auto', marginRight: 'auto', maxWidth:isMobileView? '80%': '80%' }}>
+            <p>
+    <strong>Getting started:</strong> I made the basic layout of the website and then set up a local development environment to work on it.
+</p>
+<p>
+    <strong>frontend:</strong> I used JavaScript, HTML, CSS, and React.js to build the frontend of the website, making it dynamic and user-friendly.
+</p>
+<p>
+    <strong>AWS Deployment</strong> I rented an AWS EC2 Ubuntu Linux server, logged in via SSH, and installed Node.js and Nginx onto it.
+</p>
+
+<p>
+    <strong>Domain:</strong> I bought my domain Name and pointed that to my AWS ip adress I also got a SLL certficate so my website would be secured and trusted .
+</p>
             </div>
           </div>
           <h3 style={{ textAlign: 'center', marginTop: '4rem', color: '#aaa', fontWeight: 'normal', marginLeft: isMobileView ? '0%' : '1%' }}>
@@ -262,10 +264,10 @@ const MainContent = () => {
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent sx={{ py: '12px', px: 2 }}>
-                    <Typography variant="h6" component="span" style={{ fontSize: isMobileView ? '110%' : '120%' }}>
+                    <Typography variant="h6" component="span" style={{ fontSize: isMobileView ? '90%' : '120%' }}>
                       {title}
                     </Typography>
-                    <Typography style={{ fontSize: isMobileView ? 'smaller' : 'inherit' }}>{description}</Typography>
+                    <Typography style={{ fontSize: isMobileView ? '60%' : 'inherit' }}>{description}</Typography>
                   </TimelineContent>
                 </TimelineItem>
               ))}
