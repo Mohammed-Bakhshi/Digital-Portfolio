@@ -29,14 +29,6 @@ const Portfolio = () => {
 
     checkIsMobile();
 
-    window.addEventListener('resize', checkIsMobile);
-
-    return () => {
-      window.removeEventListener('resize', checkIsMobile);
-    };
-  }, []);
-
-  useEffect(() => {
     const handleResize = () => {
       const minHeight = window.innerHeight;
       document.documentElement.style.setProperty('--min-height', `${minHeight}px`);
@@ -44,9 +36,13 @@ const Portfolio = () => {
 
     handleResize();
 
+    window.addEventListener('resize', checkIsMobile);
     window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', checkIsMobile);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const buttonStyle = {
@@ -63,7 +59,6 @@ const Portfolio = () => {
 
   const additionalButtonsContainerStyle = {
     display: 'flex',
-    justifyContent: 'center',
     marginTop: isMobileView ? '80%' : 'unset',
     gap: '10%',
     position: 'fixed',
@@ -105,20 +100,17 @@ const Portfolio = () => {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '0rem',
-    gap:isMobileView? '35%': '40%',
+    gap: isMobileView ? '35%' : '40%',
   };
 
   const linkStyle = {
-    fontSize: isMobileView?'80%':'120%',
-    marginRight:isMobileView?'-20px': '-2%',
+    fontSize: isMobileView ? '80%' : '120%',
+    marginRight: isMobileView ? '-20px' : '-2%',
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#aaa',
-
     borderBottom: '2px solid #aaa',
   };
-
-  
 
   return (
     <Router>
@@ -127,33 +119,30 @@ const Portfolio = () => {
           path="/"
           element={
             <>
+              <style>
+                {`
+                  ::selection {
+                    color: #00e6e6;
+                  }
+                `}
+              </style>
 
-<style>
-        {`
-          ::selection {
-            color: #00e6e6;
-          }
-        `}
-      </style>
-            
               <div style={{ position: 'relative' }}>
-        <div style={mainContentStyle}>
-          <div style={linksContainerStyle}>
-            <Link to="/about" style={{ ...linkStyle }}>About</Link>
-            <Link to="/" style={{ ...linkStyle }}>Home</Link>
-            <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
-          </div>
+                <div style={mainContentStyle}>
+                  <div style={linksContainerStyle}>
+                    <Link to="/about" style={{ ...linkStyle }}>About</Link>
+                    <Link to="/" style={{ ...linkStyle }}>Home</Link>
+                    <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
+                  </div>
 
-                  <div
-                    style={{
-                      textAlign: 'left',
-                      top: '40%',
-                      position: 'fixed',
-                      width: isMobileView ? '75%' : '50%',
-                      transform: 'translateY(-50%)',
-                      marginLeft: isMobileView?'10%':'27%',
-                    }}
-                  >
+                  <div style={{
+                    textAlign: 'left',
+                    top: '40%',
+                    position: 'fixed',
+                    width: isMobileView ? '75%' : '50%',
+                    transform: 'translateY(-50%)',
+                    marginLeft: isMobileView ? '10%' : '27%',
+                  }}>
                     <h2>
                       <span style={{ fontSize: isMobileView ? '20px' : '30px', fontWeight: 'normal', top: isMobileView ? '10%' : 'unset' }}>Hi, my name is Mohammed 👋</span>
                       <br />
@@ -161,16 +150,11 @@ const Portfolio = () => {
                     </h2>
                   </div>
 
-                  
-
                   <div style={additionalButtonsContainerStyle}>
                     {isMobileView ? null : (
                       <Link
                         to="/about"
-                        style={Object.assign({}, buttonStyle, {
-                          minWidth: '150px',
-                          textDecoration: 'none',
-                        })}
+                        style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
                         onMouseEnter={(e) => {
                           e.target.style.backgroundColor = '#001f33';
                           e.target.style.color = '#bfbfbf';
@@ -183,13 +167,25 @@ const Portfolio = () => {
                         About Me
                       </Link>
                     )}
-                      <a
-                        href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
-                        download="Mohammed_Bakhshi_CV.pdf"
-                        style={Object.assign({}, buttonStyle, {
-                          minWidth: '150px',
-                          textDecoration: 'none',
-                        })}
+                    <a
+                      href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
+                      download="Mohammed_Bakhshi_CV.pdf"
+                      style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = '#001f33';
+                        e.target.style.color = '#bfbfbf';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = 'transparent';
+                        e.target.style.color = '#aaa';
+                      }}
+                    >
+                      View my CV
+                    </a>
+                    {!isMobileView && (
+                      <Link
+                        to="/contact"
+                        style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
                         onMouseEnter={(e) => {
                           e.target.style.backgroundColor = '#001f33';
                           e.target.style.color = '#bfbfbf';
@@ -199,133 +195,81 @@ const Portfolio = () => {
                           e.target.style.color = '#aaa';
                         }}
                       >
-                        View my CV
-                      </a>
-                    
-                    
-                      {!isMobileView && (
-  <Link
-    to="/contact"
-    style={Object.assign({}, buttonStyle, {
-      minWidth: '150px',
-      textDecoration: 'none',
-    })}
-    onMouseEnter={(e) => {
-      e.target.style.backgroundColor = '#001f33';
-      e.target.style.color = '#bfbfbf';
-    }}
-    onMouseLeave={(e) => {
-      e.target.style.backgroundColor = 'transparent';
-      e.target.style.color = '#aaa';
-    }}
-  >
-    Contact Me
-  </Link>
-)}
-                    
+                        Contact Me
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>
 
-             
-                
               <div style={footerStyle}>
                 <a href="https://www.linkedin.com/in/mohammed-bakhshi/" target="_blank" rel="noopener noreferrer">
                   <img
                     src={linkedin}
                     alt="LinkedIn"
-                    style={Object.assign({}, logoStyle, grayscaleLogoStyle)}
-                    onMouseEnter={(e) => {
-                      e.target.style.filter = 'grayscale(0%)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.filter = 'grayscale(100%)';
-                    }}
+                    style={{ ...logoStyle, ...grayscaleLogoStyle }}
+                    onMouseEnter={(e) => { e.target.style.filter = 'grayscale(0%)'; }}
+                    onMouseLeave={(e) => { e.target.style.filter = 'grayscale(100%)'; }}
                   />
                 </a>
-
                 <a href="https://github.com/Mohammed-Bakhshi" target="_blank" rel="noopener noreferrer">
                   <img
                     src={github}
                     alt="GitHub"
-                    style={Object.assign({}, logoStyle, grayscaleLogoStyle)}
-                    onMouseEnter={(e) => {
-                      e.target.style.filter = 'grayscale(0%)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.filter = 'grayscale(100%)';
-                    }}
+                    style={{ ...logoStyle, ...grayscaleLogoStyle }}
+                    onMouseEnter={(e) => { e.target.style.filter = 'grayscale(0%)'; }}
+                    onMouseLeave={(e) => { e.target.style.filter = 'grayscale(100%)'; }}
                   />
                 </a>
-
                 <a href="https://www.facebook.com/mohammed.bakhshi/" target="_blank" rel="noopener noreferrer">
                   <img
                     src={facebook}
                     alt="Facebook"
-                    style={Object.assign({}, logoStyle, grayscaleLogoStyle)}
-                    onMouseEnter={(e) => {
-                      e.target.style.filter = 'grayscale(0%)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.filter = 'grayscale(100%)';
-                    }}
+                    style={{ ...logoStyle, ...grayscaleLogoStyle }}
+                    onMouseEnter={(e) => { e.target.style.filter = 'grayscale(0%)'; }}
+                    onMouseLeave={(e) => { e.target.style.filter = 'grayscale(100%)'; }}
                   />
                 </a>
-
                 <a href="https://instagram.com/mohammedbakhshi/" target="_blank" rel="noopener noreferrer">
                   <img
                     src={instagram}
                     alt="Instagram"
-                    style={Object.assign({}, logoStyle, grayscaleLogoStyle)}
-                    onMouseEnter={(e) => {
-                      e.target.style.filter = 'grayscale(0%)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.filter = 'grayscale(100%)';
-                    }}
+                    style={{ ...logoStyle, ...grayscaleLogoStyle }}
+                    onMouseEnter={(e) => { e.target.style.filter = 'grayscale(0%)'; }}
+                    onMouseLeave={(e) => { e.target.style.filter = 'grayscale(100%)'; }}
                   />
                 </a>
-
                 <a href="mailto:mohammedbakhshi@hotmail.com" target="_blank" rel="noopener noreferrer">
                   <img
                     src={email}
                     alt="Email"
-                    style={Object.assign({}, logoStyle, grayscaleLogoStyle)}
-                    onMouseEnter={(e) => {
-                      e.target.style.filter = 'grayscale(0%)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.filter = 'grayscale(100%)';
-                    }}
+                    style={{ ...logoStyle, ...grayscaleLogoStyle }}
+                    onMouseEnter={(e) => { e.target.style.filter = 'grayscale(0%)'; }}
+                    onMouseLeave={(e) => { e.target.style.filter = 'grayscale(100%)'; }}
                   />
                 </a>
               </div>
 
-              <div
-  style={
-    isMobileView
-      ? null
-      : {
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          color: '#aaa',
-          position: 'fixed',
-          bottom: '50px',
-          width: '100%',
-          fontSize: '80%',
-          gap: '10%',
-        }
-  }
->
-  {!isMobileView && <p style={{ marginRight: '10px' }}>Built using React.js</p>}
-  {!isMobileView && <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>}
-  {!isMobileView && <p style={{ marginRight: '10px' }}>Powered by Node.js</p>}
-</div>
+              {!isMobileView && (
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  color: '#aaa',
+                  position: 'fixed',
+                  bottom: '50px',
+                  width: '100%',
+                  fontSize: '80%',
+                  gap: '10%',
+                }}>
+                  <p style={{ marginRight: '10px' }}>Built using React.js</p>
+                  <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>
+                  <p style={{ marginRight: '10px' }}>Powered by Node.js</p>
+                </div>
+              )}
             </>
           }
         />
-
         <Route path="/contact" element={<ContactMePage />} />
         <Route path="/about" element={<AboutMePage />} />
       </Routes>
@@ -334,4 +278,3 @@ const Portfolio = () => {
 };
 
 export default Portfolio;
-                                            

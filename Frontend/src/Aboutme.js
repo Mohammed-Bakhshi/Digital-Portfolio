@@ -8,7 +8,7 @@ import theresidentsclub from './image/theresidentsclub.ico';
 import Javascript from './image/javascript.png';
 import react from './image/React.png';
 import Python from './image/python.png';
-import MYSQL from './image/MYSQL.png';
+import MYSQL from './image/mysql-logo.png';
 import kotlin from './image/kotlin.png';
 import selenium from './image/Selenium.png';
 import linkedin from './image/likedin.png';
@@ -193,262 +193,103 @@ const MainContent = () => {
             Tech languages
           </h3>
           <div style={logosContainerStyle}>
-            <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
-              <img
-                id="javascript"
-                src={Javascript}
-                alt="Javascript"
-                style={logoStyle}
-                onMouseEnter={() => handleLogoHover('javascript')}
-                onMouseLeave={() => handleLogoLeave('javascript')}
-              />
-              <span className="tooltip--text" style={getTooltipStyle('javascript')}>Javascript</span>
-            </div>
-
-            <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
-              <img
-                id="react"
-                src={react}
-                alt="React"
-                style={logoStyle}
-                onMouseEnter={() => handleLogoHover('react')}
-                onMouseLeave={() => handleLogoLeave('react')}
-              />
-              <span className="tooltip--text" style={getTooltipStyle('react')}>React.js</span>
-            </div>
-
-            <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
-              <img
-                id="python"
-                src={Python}
-                alt="Python"
-                style={logoStyle}
-                onMouseEnter={() => handleLogoHover('python')}
-                onMouseLeave={() => handleLogoLeave('python')}
-              />
-              <span className="tooltip--text" style={getTooltipStyle('python')}>Python</span>
-            </div>
-
-            <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
-              <img
-                id="mysql"
-                src={MYSQL}
-                alt="MYSQL"
-                style={logoStyle}
-                onMouseEnter={() => handleLogoHover('mysql')}
-                onMouseLeave={() => handleLogoLeave('mysql')}
-              />
-              <span className="tooltip--text" style={getTooltipStyle('mysql')}>MYSQL</span>
-            </div>
-
-            <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
-              <img
-                id="kotlin"
-                src={kotlin}
-                alt="Kotlin"
-                style={logoStyle}
-                onMouseEnter={() => handleLogoHover('kotlin')}
-                onMouseLeave={() => handleLogoLeave('kotlin')}
-              />
-              <span className="tooltip--text" style={getTooltipStyle('kotlin')}>Kotlin</span>
-            </div>
-
-            <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
-              <img
-                id="selenium"
-                src={selenium}
-                alt="Selenium"
-                style={logoStyle}
-                onMouseEnter={() => handleLogoHover('selenium')}
-                onMouseLeave={() => handleLogoLeave('selenium')}
-              />
-              <span className="tooltip--text" style={getTooltipStyle('selenium')}>Selenium</span>
-            </div>
+            {[
+              { id: 'javascript', src: Javascript, alt: 'Javascript', name: 'Javascript' },
+              { id: 'react', src: react, alt: 'React', name: 'React.js' },
+              { id: 'python', src: Python, alt: 'Python', name: 'Python' },
+              { id: 'mysql', src: MYSQL, alt: 'MYSQL', name: 'MYSQL' },
+              { id: 'kotlin', src: kotlin, alt: 'Kotlin', name: 'Kotlin' },
+              { id: 'selenium', src: selenium, alt: 'Selenium', name: 'Selenium' },
+            ].map(({ id, src, alt, name }) => (
+              <div className="tooltip" key={id} style={{ position: 'relative', display: 'inline-block' }}>
+                <img
+                  id={id}
+                  src={src}
+                  alt={alt}
+                  style={logoStyle}
+                  onMouseEnter={() => handleLogoHover(id)}
+                  onMouseLeave={() => handleLogoLeave(id)}
+                />
+                <span className="tooltip--text" style={getTooltipStyle(id)}>{name}</span>
+              </div>
+            ))}
           </div>
           <br />
           <div className="panel">
-            <h3 style={{ textAlign: 'center', marginTop: '2rem', color: '#aaa', fontWeight: 'normal', fontSize:isMobileView? '1.2rem':'1.5rem' }}>
+            <h3 style={{ textAlign: 'center', marginTop: '2rem', color: '#aaa', fontWeight: 'normal', fontSize: isMobileView ? '1.2rem' : '1.5rem' }}>
               How I made this Portfolio
             </h3>
-            
-            <div style={{ textAlign: 'center', fontSize: isMobileView?'90%':'unset', marginTop: '1rem', marginLeft: isMobileView ? '-5%' : 'auto', marginRight: 'auto', maxWidth: '600px' }}>
+
+            <div style={{ textAlign: 'center', fontSize: isMobileView ? '90%' : 'unset', marginTop: '1rem', marginLeft: isMobileView ? '-5%' : 'auto', marginRight: 'auto', maxWidth: '600px' }}>
               <p>
-                 <strong>Getting started:</strong> I set up a local development environment to work on the website efficiently.
+                <strong>Getting started:</strong> I set up a local development environment to work on the website efficiently.
               </p>
               <p>
-                 <strong>Frontend Development:</strong> Using JavaScript, HTML, CSS, and React.js, I designed and developed the frontend of the website to ensure a dynamic and responsive user experience.
+                <strong>Frontend Development:</strong> Using JavaScript, HTML, CSS, and React.js, I designed and developed the frontend of the website to ensure a dynamic and responsive user experience.
               </p>
               <p>
-                 <strong>Deployment to AWS EC2:</strong> I deployed the website to an AWS EC2 Ubuntu Linux server to make it accessible over the internet.
+                <strong>Deployment to AWS EC2:</strong> I deployed the website to an AWS EC2 Ubuntu Linux server to make it accessible over the internet.
               </p>
               <p>
-                 <strong>Server Configuration:</strong> I configured Nginx and Node.js on the server to handle web traffic and execute server-side code efficiently.
+                <strong>Server Configuration:</strong> I configured Nginx and Node.js on the server to handle web traffic and execute server-side code efficiently.
               </p>
             </div>
           </div>
-          <h3 style={{ textAlign: 'center', marginTop: '4rem', color: '#aaa', fontWeight: 'normal',marginLeft: isMobileView ? '0%' : '1%' }}>
+          <h3 style={{ textAlign: 'center', marginTop: '4rem', color: '#aaa', fontWeight: 'normal', marginLeft: isMobileView ? '0%' : '1%' }}>
             Work History
           </h3>
-          <div style={{ marginTop: '2rem', marginLeft: isMobileView ? '-40%' : '1%',position:isMobileView? 'relative':'static' }}>
-          <Timeline position={isMobileView ? 'right' : 'alternate'}>
-  <TimelineItem>
-    <TimelineOppositeContent
-      sx={{ m: 'auto 0' }}
-      align="right"
-      variant="body2"
-      color="#808080"
-      
-    >
-       2022-2024
-    </TimelineOppositeContent>
-    <TimelineSeparator>
-      <TimelineConnector />
-      <img src={mohammedicon} alt="Mohammed freelancer icon" style={{ width: '30px', height: '30px',borderRadius:'80%' }} />
-      <TimelineConnector />
-    </TimelineSeparator>
-    <TimelineContent sx={{ py: '12px', px: 2 }}>
-      <Typography variant="h6" component="span">
-        Clear ear
-      </Typography>
-      <Typography>Crated a App to manage  appoitments</Typography>
-    </TimelineContent>
-  </TimelineItem>
-  <TimelineItem>
-    <TimelineOppositeContent
-      sx={{ m: 'auto 0' }}
-      align="right"
-      variant="body2"
-      color="#808080"
-    >
-       2022-2023
-    </TimelineOppositeContent>
-    <TimelineSeparator>
-      <TimelineConnector />
-      <img src={mohammedicon} alt="Mohammed freelancer icon" style={{ width: '30px', height: '30px',borderRadius:'80%',}} />
-      <TimelineConnector />
-    </TimelineSeparator>
-    <TimelineContent sx={{ py: '12px', px: 2 }}>
-      <Typography variant="h6" component="span">
-        App developer
-      </Typography>
-      <Typography>Developed a app for clients</Typography>
-    </TimelineContent>
-  </TimelineItem>
-
-  <TimelineItem>
-    <TimelineOppositeContent
-      sx={{ m: 'auto 0' }}
-      align="right"
-      variant="body2"
-      color="#808080"
-    >
-       2022-2023
-    </TimelineOppositeContent>
-    <TimelineSeparator>
-      <TimelineConnector />
-      <img src={mohammedicon} alt="Mohammed freelancer icon" style={{ width: '30px', height: '30px',borderRadius:'80%' }} />
-      <TimelineConnector />
-    </TimelineSeparator>
-    <TimelineContent sx={{ py: '12px', px: 2 }}>
-      <Typography variant="h6" component="span">
-        Software engineer 
-      </Typography>
-      <Typography> SEO website and cleaned technical debt  </Typography>
-    </TimelineContent>
-  </TimelineItem>
-
-  <TimelineItem>
-    <TimelineOppositeContent
-      sx={{ m: 'auto 0' }}
-      align="right"
-      variant="body2"
-      color="#808080"
-    >
-       2021-2023
-    </TimelineOppositeContent>
-    <TimelineSeparator>
-      <TimelineConnector />
-      <img src={theresidentsclub} alt="theresidentsclublogo" style={{ width: '30px', height: '30px',borderRadius:'80%' }} />
-      <TimelineConnector />
-    </TimelineSeparator>
-    <TimelineContent sx={{ py: '12px', px: 2 }}>
-      <Typography variant="h6" component="span">
-        theresidentsclub
-      </Typography>
-      <Typography>Hired and managed a IT Team </Typography>
-    </TimelineContent>
-  </TimelineItem>
-
-  <TimelineItem>
-    <TimelineOppositeContent
-      sx={{ m: 'auto 0' }}
-      align="right"
-      variant="body2"
-      color="#808080"
-    >
-       2020-2023
-    </TimelineOppositeContent>
-    <TimelineSeparator>
-      <TimelineConnector />
-      <img src={MosGamesicon} alt="Mo's Games" style={{ width: '30px', height: '30px',borderRadius:'80%'}} />
-      <TimelineConnector />
-    </TimelineSeparator>
-    <TimelineContent sx={{ py: '12px', px: 2 }}>
-      <Typography variant="h6" component="span">
-        Mo's Games
-      </Typography>
-      <Typography>Founded and managed a gaming lounge  </Typography>
-    </TimelineContent>
-  </TimelineItem>
-</Timeline>
+          <div style={{ marginTop: '2rem', marginLeft: isMobileView ? '-50%' : '1%', position: isMobileView ? 'relative' : 'static' }}>
+            <Timeline position={isMobileView ? 'right' : 'alternate'}>
+              {[
+                { id: '2023-2024', icon: mohammedicon, title: 'Clear ear', description: 'Crated a App to manage  appoitments' },
+                { id: '2022-2023', icon: mohammedicon, title: 'App developer', description: 'Crated a App to manage  appoitments' },
+                { id: '2022-2023', icon: mohammedicon, title: 'Software engineer', description: 'SEO website and cleaned technical debt' },
+                { id: '2021-2023', icon: theresidentsclub, title: 'theresidentsclub', description: 'Hired and managed a IT Team' },
+                { id: '2020-2023', icon: MosGamesicon, title: 'Mo\'s Games', description: 'Founded and managed a gaming lounge' },
+              ].map(({ id, icon, title, description }) => (
+                <TimelineItem key={id}>
+                  <TimelineOppositeContent
+                    sx={{ m: 'auto 0' }}
+                    align="right"
+                    variant="body2"
+                    color="#808080"
+                  >
+                    {id}
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineConnector />
+                    <img src={icon} alt={title} style={{ width: '30px', height: '30px', borderRadius: '80%' }} />
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent sx={{ py: '12px', px: 2 }}>
+                    <Typography variant="h6" component="span" style={{ fontSize: isMobileView ? '110%' : '120%' }}>
+                      {title}
+                    </Typography>
+                    <Typography style={{ fontSize: isMobileView ? 'smaller' : 'inherit' }}>{description}</Typography>
+                  </TimelineContent>
+                </TimelineItem>
+              ))}
+            </Timeline>
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '2rem', marginBottom: '2rem' }}>
-            <a href="https://www.linkedin.com/in/mohammed-bakhshi/">
-              <img
-                src={linkedin}
-                alt="linkedin"
-                style={{ ...SmallLogoStyle }}
-                onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
-                onMouseLeave={(e) => e.target.style.filter = "grayscale(100%)"}
-              />
-            </a>
-            <a href="https://github.com/Mohammed-Bakhshi">
-              <img
-                src={github}
-                alt="github"
-                style={{ ...SmallLogoStyle }}
-                onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
-                onMouseLeave={(e) => e.target.style.filter = "grayscale(100%)"}
-              />
-            </a>
-            <a href="https://www.facebook.com/mohammed.bakhshi/">
-              <img
-                src={facebook}
-                alt="facebook"
-                style={{ ...SmallLogoStyle }}
-                onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
-                onMouseLeave={(e) => e.target.style.filter = "grayscale(100%)"}
-              />
-            </a>
-            <a href="https://www.instagram.com/mohammedbakhshi/">
-              <img
-                src={instagram}
-                alt="instagram"
-                style={{ ...SmallLogoStyle }}
-                onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
-                onMouseLeave={(e) => e.target.style.filter = "grayscale(100%)"}
-              />
-            </a>
-            <a href="mailto:mohammedbakhshi@hotmail.com">
-              <img
-                src={email}
-                alt="email"
-                style={{ ...SmallLogoStyle }}
-                onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
-                onMouseLeave={(e) => e.target.style.filter = "grayscale(100%)"}
-              />
-            </a>
+            {[
+              { href: 'https://www.linkedin.com/in/mohammed-bakhshi/', src: linkedin, alt: 'linkedin' },
+              { href: 'https://github.com/Mohammed-Bakhshi', src: github, alt: 'github' },
+              { href: 'https://www.facebook.com/mohammed.bakhshi/', src: facebook, alt: 'facebook' },
+              { href: 'https://www.instagram.com/mohammedbakhshi/', src: instagram, alt: 'instagram' },
+              { href: 'mailto:mohammedbakhshi@hotmail.com', src: email, alt: 'email' },
+            ].map(({ href, src, alt }) => (
+              <a key={href} href={href}>
+                <img
+                  src={src}
+                  alt={alt}
+                  style={{ ...SmallLogoStyle }}
+                  onMouseEnter={(e) => e.target.style.filter = "grayscale(0%)"}
+                  onMouseLeave={(e) => e.target.style.filter = "grayscale(100%)"}
+                />
+              </a>
+            ))}
           </div>
         </div>
       </div>
