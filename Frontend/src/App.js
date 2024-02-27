@@ -81,11 +81,11 @@ const Portfolio = () => {
 
   const additionalButtonsContainerStyle = {
     display: 'flex',
-    marginTop: isMobileView ? '80%' : 'unset',
+    
     gap: '10%',
     position: 'fixed',
     flexDirection: isMobileView ? 'column' : 'row', // Change flex direction based on view
-    bottom: isMobileView ? '15%' : '35%',
+    bottom: isMobileView ? '25%' : '35%',
     left: '47%',
     transform: 'translateX(-50%)',
     zIndex: 1,
@@ -96,7 +96,7 @@ const Portfolio = () => {
     color: '#aaa',
     textAlign: 'center',
     position: 'fixed',
-    bottom: isMobileView ? '10px' : '5px',
+    bottom: isMobileView ? '20px' : '5px',
     width: isMobileView ? '105%' : '100%',
     display: 'flex',
     justifyContent: 'center',
@@ -173,7 +173,7 @@ const Portfolio = () => {
                     </h2>
                   </div>
 
-                  <div ref={textWrapperRef} className="ml13" style={{  fontWeight:'300px',marginTop: isMobileView ? '5%' : '5%', marginLeft: isMobileView ? '5%' : '15%', maxWidth: isMobileView ? '85%' : '80%', textAlign: 'center',position:'relative' }}>
+                  <div ref={textWrapperRef} className="ml13" style={{  fontWeight:'300px',marginTop: isMobileView ? '5%' : '5%', marginLeft: isMobileView ? '9%' : '15%', maxWidth: isMobileView ? '90%' : '80%', textAlign: 'center',position:'relative' }}>
                     <h2 className="ml13">
                       Available to work <br />
                       <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
@@ -196,20 +196,7 @@ const Portfolio = () => {
                       About Me
                     </Link>
 
-                    <Link
-                      to="/contact"
-                      style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none', marginBottom: isMobileView ? '25px' : '0' }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#001f33';
-                        e.target.style.color = '#bfbfbf';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = 'transparent';
-                        e.target.style.color = '#aaa';
-                      }}
-                    >
-                      Contact
-                    </Link>
+                   
 
                     <a
                       href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
