@@ -65,7 +65,7 @@ const Portfolio = () => {
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, []);
+  }, [window.location.pathname]); // Add this dependency to listen for changes in URL path
 
   const buttonStyle = {
     fontSize: isMobileView ? '13px' : '20px',
@@ -206,22 +206,6 @@ const Portfolio = () => {
           View CV
         </a>
       )}
-
-                    
-                      <Link
-                        to="/contact"
-                        style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = '#001f33';
-                          e.target.style.color = '#bfbfbf';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = 'transparent';
-                          e.target.style.color = '#aaa';
-                        }}
-                      >
-                        Contact Me
-                      </Link>
                     
                   </div>
                 </div>

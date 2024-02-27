@@ -169,9 +169,9 @@ const MainContent = () => {
       <div style={{ position: 'relative' }}>
         <div style={mainContentStyle}>
           <div style={linksContainerStyle}>
-            <a href="/about" style={{ ...linkStyle }}>About</a>
+          <a href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle }}>View CV</a>
             <a href="/" style={{ ...linkStyle }}>Home</a>
-            <a href="/contact" style={{ ...linkStyle }}>Contact</a>
+            
           </div>
           <div style={imageContainerStyle}>
             <img
