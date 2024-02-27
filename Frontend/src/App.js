@@ -65,7 +65,7 @@ const Portfolio = () => {
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     };
-  }, [window.location.pathname]); // Add this dependency to listen for changes in URL path
+  }, []);
 
   const buttonStyle = {
     fontSize: isMobileView ? '13px' : '20px',
@@ -84,7 +84,8 @@ const Portfolio = () => {
     marginTop: isMobileView ? '80%' : 'unset',
     gap: '10%',
     position: 'fixed',
-    bottom: isMobileView ? '25%' : '35%',
+    flexDirection: isMobileView ? 'column' : 'row', // Change flex direction based on view
+    bottom: isMobileView ? '15%' : '35%',
     left: '47%',
     transform: 'translateX(-50%)',
     zIndex: 1,
@@ -105,8 +106,8 @@ const Portfolio = () => {
   const logoStyle = {
     cursor: 'pointer',
     transition: 'filter 0.3s',
-    width: isMobileView ? '20px' : '35px',
-    height: isMobileView ? '20px' : '35px',
+    width: isMobileView ? '25px' : '35px',
+    height: isMobileView ? '25px' : '35px',
     borderRadius: '60%',
   };
 
@@ -121,6 +122,13 @@ const Portfolio = () => {
     marginBottom: '0rem',
   };
 
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'; // Disable scrolling on the entire page
+    return () => {
+      document.body.style.overflow = 'auto'; // Re-enable scrolling when component unmounts
+    };
+  }, []);
+
   return (
     <Router>
       <Routes>
@@ -134,7 +142,7 @@ const Portfolio = () => {
                     color: #00e6e6;
                   }
                   .ml13 {
-                    font-weight:200;
+                    font-weight:400px;
                     font-size: ${isMobileView ? '80%' : '1.7em'};
                     text-transform: uppercase;
                     letter-spacing: ${isMobileView ?'2px':'10px'}; 
@@ -152,20 +160,20 @@ const Portfolio = () => {
 
                   <div style={{
                     textAlign: 'left',
-                    top: '40%',
+                    top: '32%',
                     position: 'fixed',
                     width: isMobileView ? '75%' : '50%',
                     transform: 'translateY(-50%)',
-                    marginLeft: isMobileView ? '10%' : '27%',
+                    marginLeft: isMobileView ? '5%' : '27%',
                   }}>
                     <h2>
-                      <span style={{ fontSize: isMobileView ? '20px' : '30px', fontWeight: 'normal', top: isMobileView ? '10%' : 'unset' }}>Hi, my name is Mohammed 👋</span>
+                      <span style={{ fontSize: isMobileView ? '20px' : '30px', fontWeight: 'normal', top: isMobileView ? '5%' : 'unset' }}>Hi, my name is Mohammed 👋</span>
                       <br />
                       <span style={{ fontSize: isMobileView ? '25px' : '40px', fontWeight: 'bold', top: isMobileView ? '10%' : 'unset' }}>I have been coding and analyzing data for 5+ years🤖</span>
                     </h2>
                   </div>
 
-                  <div ref={textWrapperRef} className="ml13" style={{ position: 'relative', marginTop: isMobileView ? '5%' : '5%', marginLeft: isMobileView ? '10%' : '20%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center',position:'fixed' }}>
+                  <div ref={textWrapperRef} className="ml13" style={{  fontWeight:'300px',marginTop: isMobileView ? '5%' : '5%', marginLeft: isMobileView ? '5%' : '15%', maxWidth: isMobileView ? '85%' : '80%', textAlign: 'center',position:'relative' }}>
                     <h2 className="ml13">
                       Available to work <br />
                       <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
@@ -173,40 +181,52 @@ const Portfolio = () => {
                   </div>
 
                   <div style={additionalButtonsContainerStyle}>
-                    
-                      <Link
-                        to="/about"
-                        style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
-                        onMouseEnter={(e) => {
-                          e.target.style.backgroundColor = '#001f33';
-                          e.target.style.color = '#bfbfbf';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.target.style.backgroundColor = 'transparent';
-                          e.target.style.color = '#aaa';
-                        }}
-                      >
-                        About Me
-                      </Link>
-                    
-                      {!isMobileView && (
-        <a
-          href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
-          download="Mohammed_Bakhshi_CV.pdf"
-          style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = '#001f33';
-            e.target.style.color = '#bfbfbf';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'transparent';
-            e.target.style.color = '#aaa';
-          }}
-        >
-          View CV
-        </a>
-      )}
-                    
+                    <Link
+                      to="/about"
+                      style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none', marginBottom: isMobileView ? '25px' : '0' }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = '#001f33';
+                        e.target.style.color = '#bfbfbf';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = 'transparent';
+                        e.target.style.color = '#aaa';
+                      }}
+                    >
+                      About Me
+                    </Link>
+
+                    <Link
+                      to="/contact"
+                      style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none', marginBottom: isMobileView ? '25px' : '0' }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = '#001f33';
+                        e.target.style.color = '#bfbfbf';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = 'transparent';
+                        e.target.style.color = '#aaa';
+                      }}
+                    >
+                      Contact
+                    </Link>
+
+                    <a
+                      href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
+                      download="Mohammed_Bakhshi_CV.pdf"
+                      style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none', marginBottom: isMobileView ? '10px' : '0' }}
+                      onMouseEnter={(e) => {
+                        e.target.style.backgroundColor = '#001f33';
+                        e.target.style.color = '#bfbfbf';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.backgroundColor = 'transparent';
+                        e.target.style.color = '#aaa';
+                      }}
+                      target="_blank" // Add this line to open the link in a new tab
+                    >
+                      View CV
+                    </a>
                   </div>
                 </div>
               </div>

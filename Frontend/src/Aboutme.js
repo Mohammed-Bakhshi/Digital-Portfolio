@@ -118,7 +118,7 @@ const MainContent = () => {
   const SmallLogoStyle = {
     height: isMobileView ? '20px' : '30px',
     margin: isMobileView ? '5px' : '5px',
-    marginLeft: isMobileView ? '0' : '35px',
+    marginLeft: isMobileView ? '20px' : '35px',
     borderRadius: '10px',
     transition: 'filter 0.3s',
     filter: 'grayscale(100%)', // Start with grayscale
@@ -171,6 +171,7 @@ const MainContent = () => {
           <div style={linksContainerStyle}>
           <a href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle }}>View CV</a>
             <a href="/" style={{ ...linkStyle }}>Home</a>
+            <a href="/contact" style={{ ...linkStyle }}>contact</a>
             
           </div>
           <div style={imageContainerStyle}>

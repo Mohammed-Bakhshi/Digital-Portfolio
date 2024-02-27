@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import anime from 'animejs/lib/anime.es.js';
 import email from './image/email.png';
 import linkedin from './image/likedin.png';
 import github from './image/github.png';
@@ -39,24 +38,7 @@ const Portfolio = () => {
     const handleResize = () => {
       const textWrapper = textWrapperRef.current;
       if (textWrapper) {
-        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-        anime.timeline({ loop: true })
-          .add({
-            targets: '.ml13 .letter',
-            translateY: [100, 0],
-            translateZ: 0,
-            opacity: [0, 1],
-            easing: "easeOutExpo",
-            duration: 1400,
-            delay: (el, i) => 300 + 30 * i
-          }).add({
-            targets: '.ml13 .letter',
-            translateY: [0, -100],
-            opacity: [1, 0],
-            easing: "easeInExpo",
-            duration: 1200,
-            delay: (el, i) => 100 + 30 * i
-          });
+        // You can remove the anime.js animation here if you don't need it
       }
     };
 
@@ -69,19 +51,26 @@ const Portfolio = () => {
     };
   }, []);
 
+  const openCV = () => {
+    window.open("https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf", "_blank");
+  };
+
   const tooltipTextStyle = {
-    visibility: isMobileView ? 'hidden' : 'visible',
+    visibility: 'hidden',
     width: 'auto',
-    color: '#aaa',
+    background: '#555',
+    color: '#fff',
     textAlign: 'center',
     borderRadius: '6px',
+    padding: '5px 10px',
     position: 'absolute',
-    top: isMobileView ? '10%' : '50%',
-    left: '120%',
-    marginRight: isMobileView ? '100px' : '0px',
-    transform: isMobileView ? 'translateX(-50%)' : 'translateY(-50%)',
-    opacity: '1',
-    fontSize: isMobileView ? '11px' : '16px',
+    zIndex: '1',
+    bottom: '130%',
+    right: '50%',
+    transform: 'translateX(50%)',
+    opacity: '0',
+    transition: 'opacity .2s ease-in',
+    fontSize: '14px',
     whiteSpace: 'nowrap',
   };
 
@@ -105,19 +94,19 @@ const Portfolio = () => {
     marginBottom: isMobileView ? '40px' : '90px',
     cursor: 'pointer',
     transition: 'filter 0.3s',
-    width: isMobileView ? '30px' : '40px',
-    height: isMobileView ? '30px' : '40px',
-    margin: isMobileView ? '25px' : '20px',
+    width: isMobileView ? '30px' : '50px',
+    height: isMobileView ? '30px' : '50px',
     borderRadius: '30%',
   };
 
   const logoContainerStyle = {
     display: 'flex',
-    flexDirection: isMobileView ? 'row' : 'column',
+    flexDirection: isMobileView ? 'row' : 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft:isMobileView? '0%':'-80%',
-    marginTop:isMobileView?'20%':'-10%'
+    marginLeft:isMobileView? '0%':'0%',
+    gap:'5%',
+    marginTop:isMobileView?'80%':'30%'
   };
 
   return (
@@ -127,33 +116,23 @@ const Portfolio = () => {
           ::selection {
             color: #00e6e6;
           }
-          .ml13 {
-            font-weight: 400;
-            font-size: ${isMobileView ? '80%' : '1.5em'};
-            text-transform: uppercase;
-            
-          }
-
-          .ml13 .letter {
-            display: inline-block;
-            color: #aaa;
-          }
         `}
       </style>
       
-
       <div style={{ position: 'relative' }}>
         <div style={mainContentStyle}>
           <div style={linksContainerStyle}>
-            <Link to="/about" style={{ ...linkStyle }}>About</Link>
+
+          <a href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf" style={{ ...linkStyle }} target="_blank">View CV</a> 
+           
             <Link to="/" style={{ ...linkStyle }}>Home</Link>
-            <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
+            <Link to="/about" style={{ ...linkStyle }}>About</Link>
           </div>
-          <div ref={textWrapperRef} className="ml13" style={{ position: 'relative', marginTop: isMobileView?'25%':'30%', marginLeft: isMobileView?'15%':'35%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
-            <h2 className="ml13">
-              Contact me <br />
-            </h2>
-          </div>
+
+          <div style={{ fontSize: '20px',position:'relative',top:isMobileView?'100px':'200px',left:'0%' }}> {/* Add a div here with fontSize set to 20px */}
+    <h1>Contact me</h1> {/* Move this line inside the div */}
+  </div>
+        
           <div style={logoContainerStyle}>
             <div className="tooltip" style={{ position: 'relative', display: 'inline-block' }}>
               <a href="https://www.linkedin.com/in/mohammed-bakhshi/" target="_blank" rel="noopener noreferrer">
