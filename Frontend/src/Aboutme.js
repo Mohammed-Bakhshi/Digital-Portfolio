@@ -240,7 +240,7 @@ const MainContent = () => {
           <h3 style={{ textAlign: 'center', marginTop: '4rem', color: '#aaa', fontWeight: 'normal', marginLeft: isMobileView ? '0%' : '1%' }}>
             Work History
           </h3>
-          <div style={{ marginTop: '2rem', marginLeft: isMobileView ? '-50%' : '1%', position: isMobileView ? 'relative' : 'static' }}>
+          <div style={{ marginTop: '2rem', marginLeft: isMobileView ? '-40%' : '1%', position: isMobileView ? 'relative' : 'static' }}>
             <Timeline position={isMobileView ? 'right' : 'alternate'}>
               {[
                 { id: '2023-2024', icon: mohammedicon, title: 'Clear ear', description: 'Crated a App to manage  appoitments' },

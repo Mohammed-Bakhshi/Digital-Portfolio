@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import linkedin from './image/likedin.png';
 import ContactMePage from './contactme.js';
+import anime from 'animejs/lib/anime.es.js';
 import AboutMePage from './Aboutme.js';
 import github from './image/github.png';
 import email from './image/email.png';
@@ -20,6 +21,7 @@ const mainContentStyle = {
 
 const Portfolio = () => {
   const [isMobileView, setIsMobileView] = useState(false);
+  const textWrapperRef = useRef(null);
 
   useEffect(() => {
     const checkIsMobile = () => {
@@ -27,21 +29,41 @@ const Portfolio = () => {
       setIsMobileView(isMobile);
     };
 
-    checkIsMobile();
-
     const handleResize = () => {
-      const minHeight = window.innerHeight;
-      document.documentElement.style.setProperty('--min-height', `${minHeight}px`);
+      const textWrapper = textWrapperRef.current;
+      if (textWrapper) {
+        textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+        anime.timeline({ loop: true })
+          .add({
+            targets: '.ml13 .letter',
+            translateY: [100, 0],
+            translateZ: 0,
+            opacity: [0, 1],
+            easing: "easeOutExpo",
+            duration: 1400,
+            delay: (el, i) => 300 + 30 * i
+          }).add({
+            targets: '.ml13 .letter',
+            translateY: [0, -100],
+            opacity: [1, 0],
+            easing: "easeInExpo",
+            duration: 1200,
+            delay: (el, i) => 100 + 30 * i
+          });
+      }
     };
 
-    handleResize();
+    const handleWindowResize = () => {
+      checkIsMobile();
+      handleResize();
+    };
 
-    window.addEventListener('resize', checkIsMobile);
-    window.addEventListener('resize', handleResize);
+    handleWindowResize();
+
+    window.addEventListener('resize', handleWindowResize);
 
     return () => {
-      window.removeEventListener('resize', checkIsMobile);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleWindowResize);
     };
   }, []);
 
@@ -63,7 +85,7 @@ const Portfolio = () => {
     gap: '10%',
     position: 'fixed',
     bottom: isMobileView ? '25%' : '35%',
-    left: '50%',
+    left: '47%',
     transform: 'translateX(-50%)',
     zIndex: 1,
   };
@@ -72,22 +94,19 @@ const Portfolio = () => {
     backgroundColor: '#171717',
     color: '#aaa',
     textAlign: 'center',
-    padding: '1rem',
     position: 'fixed',
-    bottom: isMobileView ? '10px' : '-15px',
+    bottom: isMobileView ? '10px' : '5px',
     width: isMobileView ? '105%' : '100%',
     display: 'flex',
-    justifyContent: isMobileView ? 'center' : 'flex-end',
-    gap: isMobileView ? '30px' : '10px',
-    right: isMobileView ? '-40px' : '10px',
+    justifyContent: 'center',
+    gap: '20px',
   };
 
   const logoStyle = {
-    marginRight: '0px',
     cursor: 'pointer',
     transition: 'filter 0.3s',
-    width: isMobileView ? '20px' : '30px',
-    height: isMobileView ? '20px' : '30px',
+    width: isMobileView ? '20px' : '35px',
+    height: isMobileView ? '20px' : '35px',
     borderRadius: '60%',
   };
 
@@ -100,16 +119,6 @@ const Portfolio = () => {
     display: 'flex',
     justifyContent: 'center',
     marginBottom: '0rem',
-    gap: isMobileView ? '35%' : '40%',
-  };
-
-  const linkStyle = {
-    fontSize: isMobileView ? '80%' : '120%',
-    marginRight: isMobileView ? '-20px' : '-2%',
-    cursor: 'pointer',
-    textDecoration: 'none',
-    color: '#aaa',
-    borderBottom: '2px solid #aaa',
   };
 
   return (
@@ -124,16 +133,22 @@ const Portfolio = () => {
                   ::selection {
                     color: #00e6e6;
                   }
+                  .ml13 {
+                    font-weight:200;
+                    font-size: ${isMobileView ? '80%' : '1.7em'};
+                    text-transform: uppercase;
+                    letter-spacing: ${isMobileView ?'2px':'10px'}; 
+                  }
+                  .ml13 .letter {
+                    display: inline-block;
+                    color: #aaa;
+                  }
                 `}
               </style>
 
               <div style={{ position: 'relative' }}>
                 <div style={mainContentStyle}>
-                  <div style={linksContainerStyle}>
-                    <Link to="/about" style={{ ...linkStyle }}>About</Link>
-                    <Link to="/" style={{ ...linkStyle }}>Home</Link>
-                    <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
-                  </div>
+                  <div style={linksContainerStyle}></div>
 
                   <div style={{
                     textAlign: 'left',
@@ -150,8 +165,15 @@ const Portfolio = () => {
                     </h2>
                   </div>
 
+                  <div ref={textWrapperRef} className="ml13" style={{ position: 'relative', marginTop: isMobileView ? '5%' : '5%', marginLeft: isMobileView ? '10%' : '20%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center',position:'fixed' }}>
+                    <h2 className="ml13">
+                      Available to work <br />
+                      <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
+                    </h2>
+                  </div>
+
                   <div style={additionalButtonsContainerStyle}>
-                    {isMobileView ? null : (
+                    
                       <Link
                         to="/about"
                         style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
@@ -166,23 +188,26 @@ const Portfolio = () => {
                       >
                         About Me
                       </Link>
-                    )}
-                    <a
-                      href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
-                      download="Mohammed_Bakhshi_CV.pdf"
-                      style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
-                      onMouseEnter={(e) => {
-                        e.target.style.backgroundColor = '#001f33';
-                        e.target.style.color = '#bfbfbf';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.target.style.backgroundColor = 'transparent';
-                        e.target.style.color = '#aaa';
-                      }}
-                    >
-                      View my CV
-                    </a>
-                    {!isMobileView && (
+                    
+                      {!isMobileView && (
+        <a
+          href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
+          download="Mohammed_Bakhshi_CV.pdf"
+          style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = '#001f33';
+            e.target.style.color = '#bfbfbf';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = 'transparent';
+            e.target.style.color = '#aaa';
+          }}
+        >
+          View CV
+        </a>
+      )}
+
+                    
                       <Link
                         to="/contact"
                         style={{ ...buttonStyle, minWidth: '150px', textDecoration: 'none' }}
@@ -197,7 +222,7 @@ const Portfolio = () => {
                       >
                         Contact Me
                       </Link>
-                    )}
+                    
                   </div>
                 </div>
               </div>
@@ -257,7 +282,7 @@ const Portfolio = () => {
                   alignItems: 'center',
                   color: '#aaa',
                   position: 'fixed',
-                  bottom: '50px',
+                  bottom: '100px',
                   width: '100%',
                   fontSize: '80%',
                   gap: '10%',

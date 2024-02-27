@@ -116,8 +116,8 @@ const Portfolio = () => {
     flexDirection: isMobileView ? 'row' : 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: '-80%',
-    marginTop: '5%'
+    marginLeft:isMobileView? '0%':'-80%',
+    marginTop:isMobileView?'20%':'-10%'
   };
 
   return (
@@ -140,6 +140,7 @@ const Portfolio = () => {
           }
         `}
       </style>
+      
 
       <div style={{ position: 'relative' }}>
         <div style={mainContentStyle}>
@@ -148,10 +149,9 @@ const Portfolio = () => {
             <Link to="/" style={{ ...linkStyle }}>Home</Link>
             <Link to="/contact" style={{ ...linkStyle }}>Contact</Link>
           </div>
-          <div ref={textWrapperRef} className="ml13" style={{ position: 'relative', marginTop: '8%', marginLeft: '10%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
+          <div ref={textWrapperRef} className="ml13" style={{ position: 'relative', marginTop: isMobileView?'25%':'30%', marginLeft: isMobileView?'15%':'35%', maxWidth: isMobileView ? '75%' : '80%', textAlign: 'center' }}>
             <h2 className="ml13">
-              Available to work <br />
-              <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
+              Contact me <br />
             </h2>
           </div>
           <div style={logoContainerStyle}>
