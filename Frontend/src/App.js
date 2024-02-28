@@ -81,12 +81,12 @@ const Portfolio = () => {
 
   const additionalButtonsContainerStyle = {
     display: 'flex',
-    
+
     gap: '10%',
-    position: 'fixed',
+    position: 'relative',
     flexDirection: isMobileView ? 'column' : 'row', // Change flex direction based on view
-    bottom: isMobileView ? '30%' : '35%',
-    left:isMobileView?'47%':'48.5%',
+    marginTop: isMobileView ? '60%' : '20%',
+    marginLeft:isMobileView?'53%':'55%',
     transform: 'translateX(-50%)',
     zIndex: 1,
   };
@@ -173,7 +173,7 @@ const Portfolio = () => {
                     </h2>
                   </div>
 
-                  <div ref={textWrapperRef} className="ml13" style={{ marginTop: isMobileView ? '10%' : '3%', marginLeft: isMobileView ? '-10%' : '15%', maxWidth: isMobileView ? '95%' : '80%', textAlign: 'center',position:'relative' }}>
+                  <div ref={textWrapperRef} className="ml13" style={{ marginTop: isMobileView ? '10%' : '3%', marginLeft: isMobileView ? '0%' : '11%', maxWidth: isMobileView ? '100%' : '80%', textAlign: 'center',position:'relative' }}>
                     <h2 className="ml13">
                       Available to work <br />
                       <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
@@ -272,11 +272,11 @@ const Portfolio = () => {
                   justifyContent: 'center',
                   alignItems: 'center',
                   color: '#aaa',
-                  position: 'fixed',
-                  bottom: '100px',
+                  position: 'relative',
+                  bottom: '225px',
                   width: '100%',
-                  fontSize:isMobileView? '30%': '80%',
-                  gap: '10%',
+                  fontSize:isMobileView? '60%': '80%',
+                  gap:isMobileView?'3%':'10%',
                 }}>
                   <p style={{ marginRight: '10px' }}>Built using React.js</p>
                   <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>

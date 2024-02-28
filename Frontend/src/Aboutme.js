@@ -83,6 +83,13 @@ const MainContent = () => {
     textDecoration: 'none',
     color: '#aaa',
     borderBottom: '2px solid #aaa',
+    transition: 'color 0.3s, border-bottom-color 0.3s', // Added transition
+  };
+
+  // Adjusted hover style
+  const linkHoverStyle = {
+    color: '#C4DCFF',
+    borderBottomColor: '#C4DCFF',
   };
 
   const imageContainerStyle = {
@@ -165,14 +172,16 @@ const MainContent = () => {
           ::selection {
             color: #00e6e6;
           }
+          a:hover {
+            ${JSON.stringify(linkHoverStyle).slice(1, -1).replace(/["{}]/g, '')}
+          }
         `}
       </style>
       <div style={{ position: 'relative' }}>
         <div style={mainContentStyle}>
           <div style={linksContainerStyle}>
-          <a href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle }}>View CV</a>
+            <a href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle }}>View CV</a>
             <a href="/" style={{ ...linkStyle }}>Home</a>
-            
           </div>
           <div style={imageContainerStyle}>
             <img
