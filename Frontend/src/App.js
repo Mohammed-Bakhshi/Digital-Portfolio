@@ -85,8 +85,8 @@ const Portfolio = () => {
     gap: '10%',
     position: 'fixed',
     flexDirection: isMobileView ? 'column' : 'row', // Change flex direction based on view
-    bottom: isMobileView ? '25%' : '35%',
-    left: '47%',
+    bottom: isMobileView ? '30%' : '35%',
+    left:isMobileView?'47%':'48.5%',
     transform: 'translateX(-50%)',
     zIndex: 1,
   };
@@ -143,9 +143,9 @@ const Portfolio = () => {
                   }
                   .ml13 {
                     font-weight:400px;
-                    font-size: ${isMobileView ? '80%' : '1.7em'};
+                    font-size: ${isMobileView ? '75%' : '1.5em'};
                     text-transform: uppercase;
-                    letter-spacing: ${isMobileView ?'2px':'10px'}; 
+                    letter-spacing: ${isMobileView ?'0px':'5px'}; 
                   }
                   .ml13 .letter {
                     display: inline-block;
@@ -160,7 +160,7 @@ const Portfolio = () => {
 
                   <div style={{
                     textAlign: 'left',
-                    top: '32%',
+                    top:isMobileView?'32%': '35%',
                     position: 'fixed',
                     width: isMobileView ? '75%' : '50%',
                     transform: 'translateY(-50%)',
@@ -173,7 +173,7 @@ const Portfolio = () => {
                     </h2>
                   </div>
 
-                  <div ref={textWrapperRef} className="ml13" style={{  fontWeight:'300px',marginTop: isMobileView ? '5%' : '5%', marginLeft: isMobileView ? '9%' : '15%', maxWidth: isMobileView ? '90%' : '80%', textAlign: 'center',position:'relative' }}>
+                  <div ref={textWrapperRef} className="ml13" style={{ marginTop: isMobileView ? '10%' : '3%', marginLeft: isMobileView ? '-10%' : '15%', maxWidth: isMobileView ? '95%' : '80%', textAlign: 'center',position:'relative' }}>
                     <h2 className="ml13">
                       Available to work <br />
                       <span style={{ display: 'block', fontSize: isMobileView ? '11px' : '1px', fontWeight: 'normal', color: '#aaa' }}>Flexible salary</span>
@@ -266,7 +266,7 @@ const Portfolio = () => {
                 </a>
               </div>
 
-              {!isMobileView && (
+              
                 <div style={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -275,14 +275,14 @@ const Portfolio = () => {
                   position: 'fixed',
                   bottom: '100px',
                   width: '100%',
-                  fontSize: '80%',
+                  fontSize:isMobileView? '30%': '80%',
                   gap: '10%',
                 }}>
                   <p style={{ marginRight: '10px' }}>Built using React.js</p>
                   <p style={{ marginRight: '10px' }}>Hosted by me using AWS</p>
                   <p style={{ marginRight: '10px' }}>Powered by Node.js</p>
                 </div>
-              )}
+              
             </>
           }
         />

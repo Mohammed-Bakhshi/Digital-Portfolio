@@ -71,13 +71,14 @@ const MainContent = () => {
   const linksContainerStyle = {
     display: 'flex',
     justifyContent: 'center',
+    marginLeft:'-15px',
     marginBottom: '0rem',
-    gap: isMobileView ? '35%' : '40%',
+    gap: isMobileView ? '50%' : '40%',
   };
 
   const linkStyle = {
     fontSize: isMobileView ? '80%' : '120%',
-    marginRight: isMobileView ? '-20px' : '-2%',
+    marginRight: isMobileView ? '0' : '-2%',
     cursor: 'pointer',
     textDecoration: 'none',
     color: '#aaa',
@@ -111,12 +112,12 @@ const MainContent = () => {
     justifyContent: 'center',
     marginTop: '2rem',
     marginBottom: '2rem',
-    gap: isMobileView ? '8%' : '10%',
+    gap: isMobileView ? '10%' : '10%',
     position:'relative',
   };
 
   const SmallLogoStyle = {
-    height: isMobileView ? '20px' : '30px',
+    height: isMobileView ? '25px' : '30px',
     margin: isMobileView ? '5px' : '5px',
     marginLeft: isMobileView ? '0' : '35px',
     borderRadius: '10px',
@@ -126,7 +127,7 @@ const MainContent = () => {
 
 
   const logoStyle = {
-    width: isMobileView ? '25px' : '50px',
+    width: isMobileView ? '30px' : '50px',
     height: 'auto',
     transition: 'filter 0.3s',
     filter: 'grayscale(100%)', // Start with grayscale
@@ -185,7 +186,7 @@ const MainContent = () => {
             </p>
           </div>
           {isMobileView && (
-            <p style={{ ...pcParagraphStyle, display: 'block', textAlign: 'left', marginTop: '2rem', width: '90%', fontSize: '18px' }}>
+            <p style={{ ...pcParagraphStyle, display: 'block', textAlign: 'left',marginLeft:'15px', marginTop: '2rem', width: '95%', fontSize: '18px' }}>
               Hey, my name is  Mohammed. I've been working as a data analyst and web developer for over 5 years.
               Along the way, I've picked up a bunch of programming languages and tools that help me get the job done. When I'm not at work, you can find me doing LeetCode, watching anime, or playing games.
             </p>
