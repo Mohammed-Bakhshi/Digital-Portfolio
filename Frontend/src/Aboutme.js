@@ -1,10 +1,12 @@
 import * as React from 'react';
-import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineOppositeContent, TimelineDot } from '@mui/lab';
+import { Timeline, TimelineItem, TimelineSeparator, TimelineConnector, TimelineContent, TimelineOppositeContent } from '@mui/lab';
 import Typography from '@mui/material/Typography';
+
 import untitled from './image/Untitled.png';
-import MosGamesicon from "./image/Mo's Games logo.ico";
-import mohammedicon from './image/mohammed-github.ico';
-import theresidentsclub from './image/theresidentsclub.ico';
+import MosGames from "./image/Mo's Games logo.png";
+import mohammedGithub from './image/Mohammed_github.png';
+import theresidentsclub from './image/theresidentsclub.png';
+import clearear from'./image/Clearear.jpg';
 import Javascript from './image/javascript.png';
 import react from './image/React.png';
 import Python from './image/python.png';
@@ -45,12 +47,12 @@ const MainContent = () => {
 
   const handleLogoHover = (language) => {
     setTooltipVisible({ ...tooltipVisible, [language]: true });
-    document.getElementById(language).style.filter = 'grayscale(0%)'; // Remove grayscale filter
+    document.getElementById(language).style.filter = 'grayscale(0%)';
   };
 
   const handleLogoLeave = (language) => {
     setTooltipVisible({ ...tooltipVisible, [language]: false });
-    document.getElementById(language).style.filter = 'grayscale(100%)'; // Apply grayscale filter
+    document.getElementById(language).style.filter = 'grayscale(100%)';
   };
 
   const mainContentStyle = {
@@ -83,13 +85,17 @@ const MainContent = () => {
     textDecoration: 'none',
     color: '#aaa',
     borderBottom: '2px solid #aaa',
-    transition: 'color 0.3s, border-bottom-color 0.3s', // Added transition
+    transition: 'color 0.3s, border-bottom-color 0.3s',
   };
 
-  // Adjusted hover style
-  const linkHoverStyle = {
-    color: '#C4DCFF',
-    borderBottomColor: '#C4DCFF',
+  const hoverLinkStyle = {
+    ...linkStyle,
+    '&:hover': {
+      color: '#C4DCFF',
+      borderBottom: '2px solid #000',
+      
+      
+    },
   };
 
   const imageContainerStyle = {
@@ -129,15 +135,14 @@ const MainContent = () => {
     marginLeft: isMobileView ? '0' : '35px',
     borderRadius: '10px',
     transition: 'filter 0.3s',
-    filter: 'grayscale(100%)', // Start with grayscale
+    filter: 'grayscale(100%)',
   };
-
 
   const logoStyle = {
     width: isMobileView ? '30px' : '50px',
     height: 'auto',
     transition: 'filter 0.3s',
-    filter: 'grayscale(100%)', // Start with grayscale
+    filter: 'grayscale(100%)',
   };
 
   const tooltipTextStyle = {
@@ -170,18 +175,36 @@ const MainContent = () => {
       <style>
         {`
           ::selection {
-            color: #00e6e6;
+            color: #C4DCFF;
           }
           a:hover {
-            ${JSON.stringify(linkHoverStyle).slice(1, -1).replace(/["{}]/g, '')}
+            color: #C4DCFF;
+            border-bottom-color: #C4DCFF;
           }
         `}
       </style>
       <div style={{ position: 'relative' }}>
         <div style={mainContentStyle}>
           <div style={linksContainerStyle}>
-            <a href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf" target="_blank" rel="noopener noreferrer" style={{ ...linkStyle }}>View CV</a>
-            <a href="/" style={{ ...linkStyle }}>Home</a>
+          <a
+              href="https://react--portfolio.s3.eu-west-2.amazonaws.com/Mohammed+Bakhshi+CV+.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={hoverLinkStyle}
+              onMouseEnter={(e) => e.target.style.color = '#C4DCFF'}
+              onMouseLeave={(e) => e.target.style.color = '#aaa'}
+            >
+              View CV
+            </a>
+            <a
+              href="/"
+              style={hoverLinkStyle}
+              onMouseEnter={(e) => e.target.style.color = '#C4DCFF'}
+              onMouseLeave={(e) => e.target.style.color = '#aaa'}
+            >
+              Home
+            </a>
+          
           </div>
           <div style={imageContainerStyle}>
             <img
@@ -253,11 +276,11 @@ const MainContent = () => {
           <div style={{ marginTop: '2rem', marginLeft: isMobileView ? '-40%' : '1%', position: isMobileView ? 'relative' : 'static' }}>
             <Timeline position={isMobileView ? 'right' : 'alternate'}>
               {[
-                { id: '2023-2024', icon: mohammedicon, title: 'Clear ear', description: 'Crated a App to manage  appoitments' },
-                { id: '2022-2023', icon: mohammedicon, title: 'App developer', description: 'Crated a App to manage  appoitments' },
-                { id: '2022-2023', icon: mohammedicon, title: 'Software engineer', description: 'SEO website and cleaned technical debt' },
+                { id: '2023-2024', icon: clearear, title: 'Clear ear', description: 'Crated a App to manage  appoitments' },
+                { id: '2022-2023', icon: mohammedGithub, title: 'App developer', description: 'Crated a App to manage  appoitments' },
+                { id: '2022-2023', icon: mohammedGithub, title: 'Software engineer', description: 'SEO website and cleaned technical debt' },
                 { id: '2021-2023', icon: theresidentsclub, title: 'theresidentsclub', description: 'Hired and managed a IT Team' },
-                { id: '2020-2023', icon: MosGamesicon, title: 'Mo\'s Games', description: 'Founded and managed a gaming lounge' },
+                { id: '2020-2023', icon: MosGames, title: 'Mo\'s Games', description: 'Founded and managed a gaming lounge' },
               ].map(({ id, icon, title, description }) => (
                 <TimelineItem key={id}>
                   <TimelineOppositeContent

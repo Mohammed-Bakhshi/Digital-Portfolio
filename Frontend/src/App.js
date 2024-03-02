@@ -81,7 +81,6 @@ const Portfolio = () => {
 
   const additionalButtonsContainerStyle = {
     display: 'flex',
-    
     gap: '10%',
     position: 'fixed',
     flexDirection: isMobileView ? 'column' : 'row', // Change flex direction based on view
@@ -139,7 +138,7 @@ const Portfolio = () => {
               <style>
                 {`
                   ::selection {
-                    color: #00e6e6;
+                    color: #C4DCFF;
                   }
                   .ml13 {
                     font-weight:400px;
